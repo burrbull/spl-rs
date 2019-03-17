@@ -1,0 +1,10 @@
+pub use crate::adc::{AdcStruct, AdcChannel};
+pub use crate::adc::{AdcDualModeStdExt, AdcInit, AdcStdExt, AnalogInputPin};
+pub use crate::crc::CrcStd;
+pub use crate::dbgmcu::DbgMcuStd;
+pub use crate::deinit::DeInit;
+pub use crate::dma::DmaChannel;
+pub use crate::dma::DmaStruct;
+pub use crate::rtc::RtcStd;
+pub use crate::spi::SpiStdExt;
+pub use crate::spi::SpiStruct;
