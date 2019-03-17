@@ -1,10 +1,8 @@
-use crate::device_hal::timer::Timer;
+use crate::hal::timer::Timer;
 
-use crate::device::{TIM1, TIM2, TIM3, TIM4, TIM5, TIM6, TIM7, TIM8};
-
-pub use crate::device::tim1::ccmr1_input::IC1FR as ICFilter;
-pub use crate::device::tim1::smcr::ETFR as ExtTRGFilter;
-//pub use crate::device::tim1::smcr::SMSW as EncoderMode;
+pub use crate::pac::tim1::ccmr1_input::IC1FR as ICFilter;
+pub use crate::pac::tim1::smcr::ETFR as ExtTRGFilter;
+//pub use crate::paac::tim1::smcr::SMSW as EncoderMode;
 
 
 
@@ -129,7 +127,7 @@ impl TimBDTRStruct {
                                    ((*(uint32_t*)&(PERIPH)) == TIM8_BASE))
 */
 
-pub use crate::device::tim1::ccmr1_output::CC1MR as OCMode;
+pub use crate::pac::tim1::ccmr1_output::CC1MR as OCMode;
 /// TIM_Output_Compare_and_PWM_modes 
 pub enum OutputCompare {
     Timing   = 0,
@@ -147,7 +145,7 @@ pub enum ForcedAction {
 }
 
 /// TIM_One_Pulse_Mode 
-pub use crate::device::tim1::cr1::OPMR as OPMode;
+pub use crate::pac::tim1::cr1::OPMR as OPMode;
 //#define TIM_OPMode_Single                  ((uint16_t)0x0008)
 //#define TIM_OPMode_Repetitive              ((uint16_t)0x0000)
 
@@ -174,13 +172,13 @@ pub enum Channel {
 */
 
 /// TIM_Clock_Division_CKD 
-pub use crate::device::tim1::cr1::CKDR as ClockDivision;
+pub use crate::pac::tim1::cr1::CKDR as ClockDivision;
 //#define tim_ckd_DIV1                       ((uint16_t)0x0000)
 //#define tim_ckd_DIV2                       ((uint16_t)0x0100)
 //#define tim_ckd_DIV4                       ((uint16_t)0x0200)
 
-pub use crate::device::tim1::cr1::DIRR as CounterDirection;
-pub use crate::device::tim1::cr1::CMSR as CounterAlign;
+pub use crate::pac::tim1::cr1::DIRR as CounterDirection;
+pub use crate::pac::tim1::cr1::CMSR as CounterAlign;
 /// TIM_Counter_Mode 
 pub enum CounterMode {
     Up             = 0,
@@ -208,7 +206,7 @@ pub enum OCPolarity {
 }
 
 /// Break_Polarity 
-pub use crate::device::tim1::bdtr::BKPR as BreakPolarity;
+pub use crate::pac::tim1::bdtr::BKPR as BreakPolarity;
 //#define TIM_BreakPolarity_Low              ((uint16_t)0x0000)
 //#define TIM_BreakPolarity_High             ((uint16_t)0x2000)
 
@@ -217,7 +215,7 @@ pub use crate::device::tim1::bdtr::BKPR as BreakPolarity;
 //#define TIM_AutomaticOutput_Disable        ((uint16_t)0x0000)
 
 /// Lock_levels 
-pub use crate::device::tim1::bdtr::LOCKR as LOCKLevel;
+pub use crate::pac::tim1::bdtr::LOCKR as LOCKLevel;
 //#define TIM_LOCKLevel_OFF                  ((uint16_t)0x0000)
 //#define TIM_LOCKLevel_1                    ((uint16_t)0x0100)
 //#define TIM_LOCKLevel_2                    ((uint16_t)0x0200)
@@ -238,7 +236,7 @@ pub enum ICSelection {
 
 /// TIM_Input_Capture_Prescaler 
 
-pub use crate::device::tim1::ccmr1_input::IC1PSCW as ICPrescaler;
+pub use crate::pac::tim1::ccmr1_input::IC1PSCR as ICPrescaler;
 //#define ic_psc_DIV1                     ((uint16_t)0x0000)
 //#define ic_psc_DIV2                     ((uint16_t)0x0004)
 //#define ic_psc_DIV4                     ((uint16_t)0x0008)
@@ -246,7 +244,7 @@ pub use crate::device::tim1::ccmr1_input::IC1PSCW as ICPrescaler;
 
 
 /// TIM_DMA_Base_address 
-pub use crate::device::tim1::dcr::DBAW as DMABaseAddress;
+pub use crate::pac::tim1::dcr::DBAR as DMABaseAddress;
 /*#define TIM_DMABase_CR1                    ((uint16_t)0x0000)
 #define TIM_DMABase_CR2                    ((uint16_t)0x0001)
 #define TIM_DMABase_SMCR                   ((uint16_t)0x0002)
@@ -268,7 +266,7 @@ pub use crate::device::tim1::dcr::DBAW as DMABaseAddress;
 #define TIM_DMABase_DCR                    ((uint16_t)0x0012)*/
 
 /// TIM_DMA_Burst_Length 
-pub use crate::device::tim1::dcr::DBLW as DMABurstLength;
+pub use crate::pac::tim1::dcr::DBLR as DMABurstLength;
 /*#define TIM_DMABurstLength_1Byte           ((uint16_t)0x0000)
 #define TIM_DMABurstLength_2Bytes          ((uint16_t)0x0100)
 #define TIM_DMABurstLength_3Bytes          ((uint16_t)0x0200)
@@ -300,7 +298,7 @@ pub mod DmaSource {
 }
 
 /// TIM_External_Trigger_Prescaler 
-pub use crate::device::tim1::smcr::ETPSW as ExtTPGPrescaler;
+pub use crate::pac::tim1::smcr::ETPSR as ExtTPGPrescaler;
 /*#define TIM_ExtTRGPSC_OFF                  ((uint16_t)0x0000)
 #define TIM_ExtTRGPSC_DIV2                 ((uint16_t)0x1000)
 #define TIM_ExtTRGPSC_DIV4                 ((uint16_t)0x2000)
@@ -308,7 +306,7 @@ pub use crate::device::tim1::smcr::ETPSW as ExtTPGPrescaler;
 */
 
 /// TIM_Internal_Trigger_Selection 
-pub use crate::device::tim1::smcr::TSW as InputTriggerSource;
+pub use crate::pac::tim1::smcr::TSR as InputTriggerSource;
 /*#define TIM_TS_ITR0                        ((uint16_t)0x0000)
 #define TIM_TS_ITR1                        ((uint16_t)0x0010)
 #define TIM_TS_ITR2                        ((uint16_t)0x0020)
@@ -330,13 +328,13 @@ pub enum TIxExternalCLK1Source {
 }
 
 /// TIM_External_Trigger_Polarity  
-pub use crate::device::tim1::smcr::ETPW as ExtTRGPolarity;
+pub use crate::pac::tim1::smcr::ETPW as ExtTRGPolarity;
 //#define ext_trg_polarity_Inverted        ((uint16_t)0x8000)
 //#define ext_trg_polarity_NonInverted     ((uint16_t)0x0000)
 
 /// TIM_Prescaler_Reload_Mode 
 
-pub use crate::device::tim1::egr::UGW as PSCReloadMode;
+pub use crate::pac::tim1::egr::UGW as PSCReloadMode;
 //#define TIM_PSCReloadMode_Update           ((uint16_t)0x0000)
 //#define TIM_PSCReloadMode_Immediate        ((uint16_t)0x0001) 
 
@@ -368,7 +366,7 @@ pub mod EventSource {
                                             (((EVENT) & (uint16_t)0xFFFE) == 0x0000) && ((EVENT) != 0x0000))) */
 
 /// TIM_Update_Source 
-pub use crate::device::tim1::cr1::URSW as UpdateSource;
+pub use crate::pac::tim1::cr1::URSW as UpdateSource;
 //#define TIM_UpdateSource_Global            ((uint16_t)0x0000)
 //#define TIM_UpdateSource_Regular           ((uint16_t)0x0001)
 
@@ -386,8 +384,9 @@ pub use crate::device::tim1::cr1::URSW as UpdateSource;
 //#define oc_clear_Disable                ((uint16_t)0x0000)
 
 /// TIM_Trigger_Output_Source 
-pub use crate::device::tim1::cr2::MMSW as TRGOSource;
-pub use crate::device::tim6::cr2::MMSW as TRGOSource6;
+pub use crate::pac::tim1::cr2::MMSR as TRGOSource;
+#[cfg(feature="tim6")]
+pub use crate::pac::tim6::cr2::MMSR as TRGOSource6;
 /*
 #define TIM_TRGOSource_Reset               ((uint16_t)0x0000)
 #define TIM_TRGOSource_Enable              ((uint16_t)0x0010)
@@ -2135,27 +2134,43 @@ macro_rules! impl_timinitgeneral{
 )}
 
 
+#[cfg(feature="tim1")]
+impl_timbase!(crate::pac::TIM1);
+#[cfg(feature="tim2")]
+impl_timbase!(crate::pac::TIM2);
+#[cfg(feature="tim3")]
+impl_timbase!(crate::pac::TIM3);
+#[cfg(feature="tim4")]
+impl_timbase!(crate::pac::TIM4);
+#[cfg(feature="tim5")]
+impl_timbase!(crate::pac::TIM5);
+#[cfg(feature="tim6")]
+impl_timbase!(crate::pac::TIM6);
+#[cfg(feature="tim7")]
+impl_timbase!(crate::pac::TIM7);
+#[cfg(feature="tim8")]
+impl_timbase!(crate::pac::TIM8);
 
+#[cfg(feature="tim6")]
+impl_timbaseonly!(crate::pac::TIM6);
+#[cfg(feature="tim7")]
+impl_timbaseonly!(crate::pac::TIM7);
 
-impl_timbase!(TIM1);
-impl_timbase!(TIM2);
-impl_timbase!(TIM3);
-impl_timbase!(TIM4);
-impl_timbase!(TIM5);
-impl_timbase!(TIM6);
-impl_timbase!(TIM7);
-impl_timbase!(TIM8);
+#[cfg(feature="tim1")]
+impl_timadvanced!(crate::pac::TIM1);
+#[cfg(feature="tim8")]
+impl_timadvanced!(crate::pac::TIM8);
 
-impl_timbaseonly!(TIM6);
-impl_timbaseonly!(TIM7);
+#[cfg(feature="tim1")]
+impl_timinitadvanced!(crate::pac::TIM1);
+#[cfg(feature="tim8")]
+impl_timinitadvanced!(crate::pac::TIM8);
 
-impl_timadvanced!(TIM1);
-impl_timadvanced!(TIM8);
-
-impl_timinitadvanced!(TIM1);
-impl_timinitadvanced!(TIM8);
-
-impl_timinitgeneral!(TIM2);
-impl_timinitgeneral!(TIM3);
-impl_timinitgeneral!(TIM4);
-impl_timinitgeneral!(TIM5);
+#[cfg(feature="tim2")]
+impl_timinitgeneral!(crate::pac::TIM2);
+#[cfg(feature="tim3")]
+impl_timinitgeneral!(crate::pac::TIM3);
+#[cfg(feature="tim4")]
+impl_timinitgeneral!(crate::pac::TIM4);
+#[cfg(feature="tim5")]
+impl_timinitgeneral!(crate::pac::TIM5);

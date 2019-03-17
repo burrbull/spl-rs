@@ -1,5 +1,3 @@
-use crate::device::{ADC1, ADC2 /*,ADC3*/};
-
 /// ADC Init structure
 ///
 /// Contains the configuration information for the specified ADC peripheral.
@@ -815,12 +813,16 @@ macro_rules! impl_adcdualmode {
     };
 }
 
-impl_adc!(ADC1);
-impl_adc!(ADC2);
+#[cfg(feature="adc1")]
+impl_adc!(crate::pac::ADC1);
+#[cfg(feature="adc2")]
+impl_adc!(crate::pac::ADC2);
 
-impl_adcdualmode!(ADC1);
+#[cfg(feature="adc1")]
+impl_adcdualmode!(crate::pac::ADC1);
 
-impl AdcInit for ADC1 {
+#[cfg(feature="adc1")]
+impl AdcInit for crate::pac::ADC1 {
     fn init(&self, adc_initstruct: &AdcStruct) {
         /*---------------------------- ADCx CR1 Configuration -----------------*/
         /* Configure ADCx: Dual mode and scan conversion mode */
@@ -850,7 +852,8 @@ impl AdcInit for ADC1 {
     }
 }
 
-impl AdcInit for ADC2 {
+#[cfg(feature="adc2")]
+impl AdcInit for crate::pac::ADC2 {
     fn init(&self, adc_initstruct: &AdcStruct) {
         /*---------------------------- ADCx CR1 Configuration -----------------*/
         /* Configure ADCx: Dual mode and scan conversion mode */
@@ -887,10 +890,7 @@ impl AdcInit for ADC2 {
 
 /******************************************************/
 
-use crate::device_hal::gpio::gpioa::{PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7};
-use crate::device_hal::gpio::gpiob::{PB0, PB1};
-//use crate::device_hal::gpio::gpioc::{PC0,PC1,PC2,PC3,PC4,PC5};
-use crate::device_hal::gpio::Analog;
+use crate::hal::gpio::Analog;
 
 /// ADC_smp
 #[derive(Clone, Copy, PartialEq)]
@@ -931,21 +931,43 @@ macro_rules! analog_input {
     };
 }
 
+#[cfg(feature="gpioa")]
+use crate::hal::gpio::gpioa::{PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7};
+#[cfg(feature="gpioa")]
 analog_input!(PA0, C0, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA1, C1, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA2, C2, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA3, C3, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA4, C4, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA5, C5, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA6, C6, Smpr2);
+#[cfg(feature="gpioa")]
 analog_input!(PA7, C7, Smpr2);
+#[cfg(feature="gpiob")]
+use crate::hal::gpio::gpiob::{PB0, PB1};
+#[cfg(feature="gpiob")]
 analog_input!(PB0, C8, Smpr2);
+#[cfg(feature="gpiob")]
 analog_input!(PB1, C9, Smpr2);
-/*analog_input!(PC0, C10, Smpr1);
+/*#[cfg(feature="gpioc")]
+use crate::hal::gpio::gpioc::{PC0,PC1,PC2,PC3,PC4,PC5};
+#[cfg(feature="gpioc")]
+analog_input!(PC0, C10, Smpr1);
+#[cfg(feature="gpioc")]
 analog_input!(PC1, C11, Smpr1);
+#[cfg(feature="gpioc")]
 analog_input!(PC2, C12, Smpr1);
+#[cfg(feature="gpioc")]
 analog_input!(PC3, C13, Smpr1);
+#[cfg(feature="gpioc")]
 analog_input!(PC4, C14, Smpr1);
+#[cfg(feature="gpioc")]
 analog_input!(PC5, C15, Smpr1);
 */
 

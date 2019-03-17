@@ -1,4 +1,4 @@
-use super::device::DBG;
+use crate::pac::DBG;
 
 /// DBGMCU_Exported_Constants
 pub mod constant {

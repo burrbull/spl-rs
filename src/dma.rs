@@ -1,5 +1,5 @@
-pub use crate::device::dma1::ch::cr::PLW;
-pub use crate::device::dma1::ch::cr::PSIZEW as PSize;
+pub use crate::pac::dma1::ch::cr::PLW;
+pub use crate::pac::dma1::ch::cr::PSIZEW as PSize;
 
 /// DMA Init structure definition
 #[derive(Clone, Copy, PartialEq)]
@@ -138,7 +138,7 @@ macro_rules! dmachannel {
         ),)+
     }),)+) => {
         $(
-            use crate::device_hal::dma::$dmaX;
+            use crate::hal::dma::$dmaX;
 
             $(
                 impl DmaChannel for $dmaX::$CX {
@@ -217,6 +217,7 @@ macro_rules! dmachannel {
     }
 }
 
+#[cfg(feature="dma1")]
 dmachannel! {
     DMA1: (dma1, dma1en, dma1rst, {
         C1: (
@@ -241,7 +242,10 @@ dmachannel! {
             cteif7, chtif7, ctcif7, cgif7
         ),
     }),
+}
 
+#[cfg(feature="dma2")]
+dmachannel! {
     DMA2: (dma2, dma2en, dma2rst, {
         C1: (
             cteif1, chtif1, ctcif1, cgif1

@@ -78,14 +78,14 @@ pub enum DataSize {
 }
 
 /// SPI_Clock_Polarity
-use super::hal::spi::Polarity as ClockPolarity;
+use super::ehal::spi::Polarity as ClockPolarity;
 /*pub enum ClockPolarity {
 	Low,// IdleLow  = 0,
 	High// IdleHigh = 1
 }*/
 
 /// SPI_Clock_Phase
-use super::hal::spi::Phase as ClockPhase;
+use super::ehal::spi::Phase as ClockPhase;
 /*pub enum ClockPhase {
 	Edge1,//CaptureOnFirstTransition = 0,
 	Edge2///CaptureOnSecondTransition = 1
@@ -300,8 +300,9 @@ macro_rules! impl_spi {
     };
 }
 
-use super::device::{SPI1, SPI2, SPI3};
-
-impl_spi!(SPI1);
-impl_spi!(SPI2);
-impl_spi!(SPI3);
+#[cfg(feature="spi1")]
+impl_spi!(crate::pac::SPI1);
+#[cfg(feature="spi2")]
+impl_spi!(crate::pac::SPI2);
+#[cfg(feature="spi3")]
+impl_spi!(crate::pac::SPI3);

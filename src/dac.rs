@@ -1,5 +1,5 @@
 
-use crate::device::DAC;
+use crate::pac::DAC;
 
 pub struct DacChannel1<D> { dac: D }
 pub struct DacChannel2<D> { dac: D }
@@ -45,7 +45,7 @@ impl DacChannelStruct {
 /// DAC_Exported_Constants
 
 /// DAC_trigger_selection 
-pub use crate::device::dac::cr::WAVE1W as Trigger;
+pub use crate::pac::dac::cr::WAVE1W as Trigger;
 /*
 #define DAC_Trigger_None                   ((uint32_t)0x00000000)
 #define DAC_Trigger_T6_TRGO                ((uint32_t)0x00000004)
@@ -147,7 +147,7 @@ impl From<Mamp> for u8 {
 
 
 /// DAC_output_buffer 
-//pub use crate::device::dac::cr::BOFF1W as OutputBuffer;
+//pub use crate::pac::dac::cr::BOFF1W as OutputBuffer;
 /*
 #define DAC_OutputBuffer_Enable            ((uint32_t)0x00000000)
 #define DAC_OutputBuffer_Disable           ((uint32_t)0x00000002)

@@ -1,4 +1,4 @@
-use super::device::CRC;
+use crate::pac::CRC;
 
 pub trait CrcStd {
     /// Resets the CRC Data register (DR).
